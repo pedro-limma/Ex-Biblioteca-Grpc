@@ -1,0 +1,31 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "BibliotecaServer";
+
+package biblioteca;
+
+service BibliotecaServiceGrpc {
+	rpc SelectAll (Empty) returns (Livros);
+	rpc SelectByID (LivroFilter) returns (Livro);
+	rpc Insert (Livro) returns (Empty);
+	rpc Update (Livro) returns (Empty);
+	rpc Delete (LivroFilter) returns (Empty);
+}
+
+message Empty {
+
+}
+
+message Livro {
+	int32 LivroID = 1;
+	string Name = 2;
+	string Tipo = 3;
+}
+
+message Livros {
+	repeated Livro items = 1;
+}
+
+message LivroFilter {
+	int32 LivroID = 1;
+}
